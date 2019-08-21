@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     }
   }
   
+  private var calculator = CalculatorLogic()
   
   @IBAction func calcButtonPressed(_ sender: UIButton) {
     
@@ -33,17 +34,16 @@ class ViewController: UIViewController {
     
     isFinishedTypingNumber = true
     
-//    // Code to handle the black buttons
-//    if let calcMethod = sender.currentTitle {
-//      if calcMethod == "AC" {
-//        displayLabel.text = "0"
-//      } else if calcMethod == "+/-" {
-//        displayValue = displayValue * -1
-//      } else if calcMethod == "%" {
-//        displayValue = displayValue / 100
-//      }
-//    }
+    calculator.setDisplayedNumber(displayValue) // Angela called her function setNumber
+    
+    if let calcMethod = sender.currentTitle {
+      
+      if let result = calculator.calculate(symbol: calcMethod) {
+        displayValue = result
+      }
+    }
   }
+  
   
   
   @IBAction func numButtonPressed(_ sender: UIButton) {
